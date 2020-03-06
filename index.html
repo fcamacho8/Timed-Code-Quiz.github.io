@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timed Quiz</title>
+
+    <style>
+       *{
+         font-family: 'Times New Roman', Times, serif;
+         font-weight: bold;
+         
+        }
+        body{
+          background-color: chocolate;
+          padding: 0;
+          margin: 0;  
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 100vw;
+          height: 100vh;
+               
+        }
+        .container{
+            background-color: cornsilk;
+            width: 30%;
+            box-shadow: 0 0 10px 5px;
+        }
+
+        .button-grid{
+            display: grid;
+            gap:2px;
+            margin: 10px 0;
+        }
+
+        .btn{
+            background-color: gainsboro;
+            border-radius:10%;
+            color:darkslategray;
+        }
+
+        .btn:hover{
+            border-color:black;
+        }
+
+        
+        /* .hide{
+            display: none;
+        } */
+
+        .start-btn{
+            padding: 10px 20px;
+            margin-left: 38%;
+            display:flex;
+            justify-self: center;
+            align-items: center;
+        }
+
+        
+    </style>
+</head>
+
+<body>
+    
+ <div class="container">
+   <div id="container" class="hide">
+      <div id="questions">Questions</div>
+      <div id="buttons" class="button-grid"> 
+          
+         <button class="btn">Answer 1</button>
+         <button class="btn">Answer 2</button>
+         <button class="btn">Answer 3</button>
+         <button class="btn">Answer 4</button>
+        
+      </div>
+   </div>
+   <div class="controls">
+       <button id="start" class="start-btn btn">Start</button>
+    
+   </div>
+</body>
+</html>
