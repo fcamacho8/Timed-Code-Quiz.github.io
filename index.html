@@ -3,81 +3,94 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Timed Quiz</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"> 
+    <title>Document</title>
 
     <style>
-       *{
-         font-family: 'Times New Roman', Times, serif;
-         font-weight: bold;
-         
-        }
         body{
           background-color: chocolate;
           padding: 0;
-          margin: 0;  
+          margin: 0;
+        }
+        #row-1{
+            background-color:burlywood;
+            box-shadow: 0 0 10px 5px;
+        }
+        #row-2{
+           
           display: flex;
           align-items: center;
           justify-content: center;
-          width: 100vw;
-          height: 100vh;
-               
-        }
-        .container{
-            background-color: cornsilk;
-            width: 30%;
-            box-shadow: 0 0 10px 5px;
+          margin: 20px 250px;
+          margin-top: 150px;
+          background-color: burlywood;
+          box-shadow: 0 0 10px 5px;
+          
         }
 
+       
         .button-grid{
             display: grid;
             gap:2px;
-            margin: 10px 0;
+            margin: 20px 0;
         }
 
         .btn{
             background-color: gainsboro;
-            border-radius:10%;
+            border-radius:20%;
             color:darkslategray;
+            height: 30px;
+            width: 150px;
         }
 
         .btn:hover{
             border-color:black;
         }
 
-        
-        /* .hide{
-            display: none;
-        } */
+        .start-control{
+            text-align: center;
 
-        .start-btn{
-            padding: 10px 20px;
-            margin-left: 38%;
-            display:flex;
-            justify-self: center;
-            align-items: center;
+        }
+
+        #questions{
+            font-weight: bold;
+            font-size: 20px;
+        }
+        .hide{
+            display: none;
         }
 
         
     </style>
 </head>
-
 <body>
-    
- <div class="container">
-   <div id="container" class="hide">
-      <div id="questions">Questions</div>
-      <div id="buttons" class="button-grid"> 
-          
-         <button class="btn">Answer 1</button>
-         <button class="btn">Answer 2</button>
-         <button class="btn">Answer 3</button>
-         <button class="btn">Answer 4</button>
-        
-      </div>
-   </div>
-   <div class="controls">
-       <button id="start" class="start-btn btn">Start</button>
-    
-   </div>
+    <div class="container">
+        <div class="row" id="row-1">
+            <div class="col">
+                <h1 id="header" style="text-align: center;font-size: 30px;">Intelligence Quiz</h1>
+               
+            </div>
+        </div>
+    </div>
+    <div class="container2">
+        <div class="row" id="row-2">
+            <div class="col" id="question-container">
+                
+                 <div id="questions">Questions</div>
+                 <div id="buttons" class="button-grid"> 
+                    <button class="btn">Answer 1</button>
+                    <button class="btn">Answer 2</button>
+                    <button class="btn">Answer 3</button>
+                    <button class="btn">Answer 4</button>
+                 </div>  
+                
+            </div>
+        </div>
+    </div>
+    <div class="start-control">
+        <button id="start" class="start-btn btn">Start</button>
+        <button id=next style="display: none;" class="btn hide"></button>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
