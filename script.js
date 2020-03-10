@@ -1,55 +1,144 @@
 var startButton = document.getElementById("start")
-var nextButton = document.getElementById("next")
-var questionContainer =document.getElementById("question-container")
-var questionEl = document.getElementById("questions")
-var answerEl = document.getElementById("buttons")
+var questionEl = document.getElementById("question")
+var answerOne = document.getElementById("ans1")
+var answerTwo = document.getElementById("ans2")
+var answerThree = document.getElementById("ans3")
+var answerFour = document.getElementById("ans4")
+var score = document.getElementById("score")
+var timer = document.getElementById("timer")
 
-var shuffle, questionIndex
 
 
-startButton.addEventListener("click", startQuiz)
+var currentQuestion = 0;
+var points = 0;
+var correct = "";
+var questions = [
+    { 
+        question: "What is the square root of 2209?",
+        selectA: "1",
+        selectB: "47",
+        selectC: "-28",
+        selectD: "Red",
+        correct: "47",
+    },
+    { 
+        question: "What's planck's constant?",
+        selectA: "3.1416",
+        selectB: "6.67x10^-11",
+        selectC: "6.63x10^-34",
+        selectD: "123",
+        correct: "6.63x10^-34",
+    },
+    {
+        question: "Who published his theory of general relativity in 1915",
+        selectA: "Leonardo DaVinci",
+        selectB: "Elon Musk",
+        selectC: "Albert Einstein",
+        selectD: "Larry Bird",
+        correct: "Hyperlink",
+    },
+    {
+        question: "How much does the earth weigh(Mass)?",
+        selectA: "5.972 × 10^24 kg",
+        selectB: "1 gram",
+        selectC: "35cm",
+        selectD: "1.898 × 10^27 kg",
+        correct: "5.972 × 10^24 kg",
+    },
+    {
+        question: "What is the smallest particle known so far?",
+        selectA: "Atom",
+        selectB: "Electrons",
+        selectC: "Grain of sand",
+        selectD: "Quarks",
+        correct: "Quarks",
+    },
+]
 
 function startQuiz() {
-  console.log("working")
-  shuffle = questions.sort(()=>Math.random() - .5)
-  questionIndex = 0;
-  nextQuestion();
+    event.preventDefault();
+    
+    questionEl.textContent = questions[currentQuestion].question;
+    answerOne.textContent = questions[currentQuestion].selectA;
+    answerTwo.textContent = questions[currentQuestion].selectB;
+    answerThree.textContent = questions[currentQuestion].selectC;
+    answerFour.textContent = questions[currentQuestion].selectD;
+    startCounter();
+
+};
+
+
+function startCounter() {
+    time = 60;
+    interval = setInterval(function () {
+        time --;
+        timer.textContent = time;
+        if (time <= 0) {
+           clearInterval(startCounter);
+        }
+    }, 1000);
 }
-function nextQuestion(){
-resetAns()
-showQuestion(shuffle[questionIndex])
+
+function scorePoints() {
+    score.textContent = points;
 }
-function showQuestion(question){
-questionEl.innerText = question.question
-question.answers.forEach(answer => {
-    var button = document.createElement("button")
-    button.innerText = answer.text
-    button.classList.add("btn")
-    if(answer.correct){
-        button.dataset.correct = answer.correct
+
+
+startButton.addEventListener("click", startQuiz);
+
+answerOne.addEventListener("click", function (event) {
+    var correct = event.target.textContent;
+    if (correct === questions[currentQuestion].correct) {
+        alert("You are correct!")
+        points += 1;
+        scorePoints();
     }
-      button.addEventListener("click", selectAns)
-      answerEl.appendChild(button)
+    else {
+        alert("You are wrong!")
+        time += -5        
+    }
+    currentQuestion ++;  
 });
-}
-
-function resetAns(){
-    nextButton.classList.add("hide")
-    while(answerEl.firstChild){
-        answerEl.removeChild(answerEl.firstChild)
+answerTwo.addEventListener("click", function (event) {
+    var correct = event.target.textContent;
+    if (correct === questions[currentQuestion].correct) {
+        alert("You are correct!")
+        points += 1;
+        scorePoints();    
     }
-}
-function selectAns(e){
- 
-}
+    else {
+        alert("You are wrong!")
+        time += -5
+    }
+    currentQuestion ++;  
+});
+answerThree.addEventListener("click", function (event) {
+    var correct = event.target.textContent;
+    if (correct === questions[currentQuestion].correct) {
+        alert("You are correct!")
+        points += 1;
+        scorePoints();
 
-var questions = [
- {
-    question: "What is the square of 2401? ",
-    answers: [
-    {text: "1", correct: true},
-    {text: "22", correct: false}
+    }
+    else {
+        alert("You are wrong!")
+        time += -5;
+    }
+    currentQuestion ++;  
+});
+answerFour.addEventListener("click", function (event) {
+    var correct = event.target.textContent;
+    if (correct === questions[currentQuestion].correct) {
+        
+        alert("You are correct!")
+        points += 1;
+        scorePoints();  
 
-  ]
- }   
-]
+    }
+    else {
+        alert("You are wrong!")
+        time += -5
+    }
+    currentQuestion ++;  
+});
+
