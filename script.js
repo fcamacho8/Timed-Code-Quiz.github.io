@@ -6,6 +6,8 @@ var answerThree = document.getElementById("ans3")
 var answerFour = document.getElementById("ans4")
 var score = document.getElementById("score")
 var timer = document.getElementById("timer")
+var ansButtons = document.getElementById("ansButtons")
+var scoreBlock = document.getElementById("scoreBlock")
 
 
 
@@ -13,7 +15,7 @@ var currentQuestion = 0;
 var points = 0;
 var correct = "";
 var questions = [
-    { 
+    {
         question: "What is the square root of 2209?",
         selectA: "1",
         selectB: "47",
@@ -21,7 +23,7 @@ var questions = [
         selectD: "Red",
         correct: "47",
     },
-    { 
+    {
         question: "What's planck's constant?",
         selectA: "3.1416",
         selectB: "6.67x10^-11",
@@ -54,10 +56,15 @@ var questions = [
         correct: "Quarks",
     },
 ]
+ansButtons.style.display = "none";
+scoreBlock.style.display = "none";
+
 
 function startQuiz() {
     event.preventDefault();
-    
+
+    ansButtons.style.display = "grid";
+
     questionEl.textContent = questions[currentQuestion].question;
     answerOne.textContent = questions[currentQuestion].selectA;
     answerTwo.textContent = questions[currentQuestion].selectB;
@@ -65,24 +72,28 @@ function startQuiz() {
     answerFour.textContent = questions[currentQuestion].selectD;
     startCounter();
 
+    startButton.style.display = "none"
+
 };
 
 
 function startCounter() {
     time = 60;
     interval = setInterval(function () {
-        time --;
+        time--;
         timer.textContent = time;
-        if (time <= 0) {
-           clearInterval(startCounter);
+        if (time <= 0 || currentQuestion >= questions.length) {
+            clearInterval(interval);
+            timer.style.display = "none"
+            scoreBlock.style.display ="block"
         }
     }, 1000);
 }
 
 function scorePoints() {
     score.textContent = points;
-}
 
+}
 
 startButton.addEventListener("click", startQuiz);
 
@@ -95,50 +106,74 @@ answerOne.addEventListener("click", function (event) {
     }
     else {
         alert("You are wrong!")
-        time += -5        
+        time += -12;
     }
-    currentQuestion ++;  
+    currentQuestion++;
+    questionEl.textContent = questions[currentQuestion].question;
+    answerOne.textContent = questions[currentQuestion].selectA;
+    answerTwo.textContent = questions[currentQuestion].selectB;
+    answerThree.textContent = questions[currentQuestion].selectC;
+    answerFour.textContent = questions[currentQuestion].selectD;
 });
 answerTwo.addEventListener("click", function (event) {
     var correct = event.target.textContent;
     if (correct === questions[currentQuestion].correct) {
         alert("You are correct!")
-        points += 1;
-        scorePoints();    
+        points++;
+        scorePoints();
     }
     else {
         alert("You are wrong!")
-        time += -5
+        time += -12;
     }
-    currentQuestion ++;  
+    currentQuestion++;
+    questionEl.textContent = questions[currentQuestion].question;
+    answerOne.textContent = questions[currentQuestion].selectA;
+    answerTwo.textContent = questions[currentQuestion].selectB;
+    answerThree.textContent = questions[currentQuestion].selectC;
+    answerFour.textContent = questions[currentQuestion].selectD;
 });
 answerThree.addEventListener("click", function (event) {
     var correct = event.target.textContent;
     if (correct === questions[currentQuestion].correct) {
         alert("You are correct!")
-        points += 1;
+        points++;
         scorePoints();
 
     }
     else {
         alert("You are wrong!")
-        time += -5;
+        time += -12;
     }
-    currentQuestion ++;  
+    currentQuestion++;
+    questionEl.textContent = questions[currentQuestion].question;
+    answerOne.textContent = questions[currentQuestion].selectA;
+    answerTwo.textContent = questions[currentQuestion].selectB;
+    answerThree.textContent = questions[currentQuestion].selectC;
+    answerFour.textContent = questions[currentQuestion].selectD;
 });
 answerFour.addEventListener("click", function (event) {
     var correct = event.target.textContent;
     if (correct === questions[currentQuestion].correct) {
-        
+
         alert("You are correct!")
-        points += 1;
-        scorePoints();  
+        points++;
+        scorePoints();
 
     }
     else {
         alert("You are wrong!")
-        time += -5
+        time += -12;
     }
-    currentQuestion ++;  
+    currentQuestion++;
+    questionEl.textContent = questions[currentQuestion].question;
+    answerOne.textContent = questions[currentQuestion].selectA;
+    answerTwo.textContent = questions[currentQuestion].selectB;
+    answerThree.textContent = questions[currentQuestion].selectC;
+    answerFour.textContent = questions[currentQuestion].selectD;
+
+
 });
 
+
+scoreBlock.style.display;
